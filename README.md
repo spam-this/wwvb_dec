@@ -35,26 +35,24 @@ There are also receivers that decode WWVB using the time data it
 encodes using binary phase-shift keying.  In theory, this will be more
 reliable.  But the author has never tried this type of receiver.
 
-Alternative sources of time such as GPS and internet time can be more
-reliable and more accurate.
-
-Anyway, wwvb_dec works by capturing 2 minutes of data from the
-receiver.  This time guarantees that at least one complete frame is
-present.
-
 # How wwvc_dec works
 
-The program searches all possible starting points for the frame to
-find the best match.  This is possible because frames contain several
-known and unchanging portions, the markers and several bits that are
-"unused" and always sent as zeros.  The best frame is the one that
-shows the fewest bit changes (errors) in the a priori known parts of
-the frame.
+wwvb_dec works by capturing 2 minutes of data from the receiver.  This
+time guarantees that at least one complete frame (60 seconds, 60
+bits/markers, one per second) is present.
+
+The program then searches all possible starting points for the frame
+to find the best match.  This is possible because frames contain
+several known and unchanging portions: the markers and also several
+bits that are "unused" and always sent as zeros.  The best frame is
+the one that shows the fewest bit changes (errors) in the a priori
+known parts of the frame.
 
 Once the frame is found, the fields of the frame are decoded by
-checking if each bit is closest to a 1, a 0, or a marker.  This is
-done by sampling the receiver 40 times per second.  For example, a
-perfectly received "1" looks like this:
+checking if each bit is closest to a 1, a 0, or a marker.
+
+The receiver is sampled 40 times per second.  For example, a perfectly
+received "1" looks like this:
 
    0000000000000000000011111111111111111111
 
