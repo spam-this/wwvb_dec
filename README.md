@@ -1,4 +1,4 @@
-Introduction
+# Introduction
 
 Program wwvb_dec decodes the signal from WWVB receivers such as the
 "CANADUINO 60kHz Atomic Clock Receiver Module V3 WWVB MSF JJY60".
@@ -15,6 +15,8 @@ framing (finding the start of frames).
 
 The receiver hardware contains an output pin that shows whether the
 carrier is in a high or low power state at any particular time.
+
+# Reception of WWVB
 
 The problem is that this simple form of reception is not robust in the
 presence of noise.  Unless reception conditions are perfect, there
@@ -39,6 +41,8 @@ reliable and more accurate.
 Anyway, wwvb_dec works by capturing 2 minutes of data from the
 receiver.  This time guarantees that at least one complete frame is
 present.
+
+# How wwvc_dec works
 
 The program searches all possible starting points for the frame to
 find the best match.  This is possible because frames contain several
@@ -81,7 +85,7 @@ Also, wwvb_dec is not written to be super small or efficient.  A
 Raspberry Pi handles it easily, but it might be hard for a tiny little
 microcontroller.
 
-Building
+# Building
 
 It's trivial.  It depends on the Raspberry Pi "pigpio" library so install
 development tools and
@@ -94,7 +98,7 @@ The dependence on pigpio is not deep.  All that is needed is
 1. A source of microsecond tick (gpioTick())
 2. A way to read a GPIO (gpioRead())
 
-Problems:
+# Problems
 
 * Not much test.
 * Not robust against tick rollover.
