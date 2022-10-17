@@ -80,8 +80,17 @@ exercise in decoding the receiver output.  It is not particularly well
 tested or designed for robustness.  Use at your own risk.
 
 Also, wwvb_dec is not written to be super small or efficient.  A
-Raspberry Pi handles it easily, but it might be hard for a tiny little
-microcontroller.
+Raspberry Pi Zero handles it easily, but it might be hard for a tiny
+little microcontroller.
+
+# Wiring
+
+  RPI GPIO4 to RX module OUT
+  RPI 5V to RX module 3-15V ***
+     *** Maybe RPI 3V3.  Check signal level of OUT when powered
+     *** by 5V.  RPI GPIO is *not* 5V tolerant.
+  RPI GND to RX module GND
+  RX module PDN to GND for normal operation, can use to reset
 
 # Building
 
